@@ -4,6 +4,45 @@
 <div class="container mt-4">
     <h1 class="mb-4">Booking Management</h1>
 
+    <!-- Add Booking Section -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Add New Booking</h5>
+        </div>
+        <div class="card-body">
+            <form action="" method="POST">
+                @csrf
+
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label for="name" class="form-label">Customer Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter customer name" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="dest" class="form-label">Destination</label>
+                        <input type="text" class="form-control" id="dest" name="dest" placeholder="Enter destination" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="date" class="form-label">Booking Date</label>
+                        <input type="date" class="form-control" id="date" name="date" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="status" class="form-label">Status</label>
+                        <select class="form-select" id="status" name="status" required>
+                            <option selected disabled>Choose status...</option>
+                            <option value="Confirmed">Confirmed</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <button type="submit" class="btn btn-success">Add Booking</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Filter Options -->
     <div class="card mb-4">
         <div class="card-header">
@@ -72,7 +111,7 @@
                     @if($details['status'] === 'Pending')
                     <button class="btn btn-sm btn-outline-success">{{ $details['action'] }}</button>
                     @endif
-                         <a href="/admin/page1/{{$index}}" class="btn btn-sm btn-outline-primary">View Details </a>
+                         <a href="/admin/page1/{{$index}}" class="btn btn-sm btn-outline-primary">View Details</a>
                     </td>
                 </tr>
                 @endforeach

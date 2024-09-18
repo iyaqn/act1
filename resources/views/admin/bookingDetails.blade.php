@@ -2,59 +2,82 @@
 
 @section('admin-content')
 <div class="container mt-4">
-    <h1 class="mb-4">Booking Details</h1>
+    <h1 class="mb-4">Edit Booking Details</h1>
 
-    <!-- Customer Information -->
-    <div class="card mb-4">
-        <div class="card-header">
-            <h5>Customer Information</h5>
-        </div>
-        <div class="card-body">
-            <p><strong>Name: </strong>{{ $details['name'] }}</p>
-            <p><strong>Booking ID: </strong>{{ $details['id'] }}</p>
-            <p><strong>Email: </strong>{{ $details['email'] ?? 'N/A' }}</p>
-            <p><strong>Phone: </strong>{{ $details['phone'] ?? 'N/A' }}</p>
-        </div>
-    </div>
+    <!-- Form starts -->
+    <form action="{{ route('booking.update', $details['id']) }}" method="POST">
+        @csrf
+        @method('PUT')
 
-    <!-- Trip Information -->
-    <div class="card mb-4">
-        <div class="card-header">
-            <h5>Trip Information</h5>
+        <!-- Customer Information -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Customer Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="name" class="form-label"><strong>Name</strong></label>
+                    <input type="text" name="name" class="form-control" id="name" value="{{ $details['name'] }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="id" class="form-label"><strong>Booking ID</strong></label>
+                    <input type="text" name="id" class="form-control" id="id" value="{{ $details['id'] }}" readonly>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-            <p><strong>Destination: </strong>{{ $details['dest'] }}</p>
-            <p><strong>Booking Date: </strong>{{ $details['date'] }}</p>
-            <p><strong>Booking Time: </strong>{{ $details['time'] }}</p>
-            <p><strong>Status: </strong>
-                @if($details['status'] === 'Pending')
-                    <span class="badge bg-warning">{{ $details['status'] }}</span>
-                @elseif($details['status'] === 'Cancelled')
-                    <span class="badge bg-danger">{{ $details['status'] }}</span>
-                @elseif($details['status'] === 'Confirmed')
-                    <span class="badge bg-success">{{ $details['status'] }}</span>
-                @endif
-            </p>
-        </div>
-    </div>
 
-    <!-- Payment Information -->
-    <div class="card mb-4">
-        <div class="card-header">
-            <h5>Payment Information</h5>
+        <!-- Trip Information -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Trip Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="dest" class="form-label"><strong>Destination</strong></label>
+                    <input type="text" name="dest" class="form-control" id="dest" value="{{ $details['dest'] }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="date" class="form-label"><strong>Booking Date</strong></label>
+                    <input type="date" name="date" class="form-control" id="date" value="{{ $details['date'] }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="status" class="form-label"><strong>Status</strong></label>
+                    <select name="status" class="form-select" id="status" required>
+                        <option value="Pending" {{ $details['status'] == 'Pending' ? 'selected' : '' }}>Pending</option>
+                        <option value="Confirmed" {{ $details['status'] == 'Confirmed' ? 'selected' : '' }}>Confirmed</option>
+                        <option value="Cancelled" {{ $details['status'] == 'Cancelled' ? 'selected' : '' }}>Cancelled</option>
+                    </select>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-            <p><strong>Total Amount: </strong>{{ $details['amount'] ?? 'N/A' }}</p>
-            <p><strong>Payment Status: </strong>{{ $details['status'] ?? 'Pending' }}</p>
-        </div>
-    </div>
 
-    <!-- Action Buttons -->
-    <div class="mt-4">
-        @if($details['status'] === 'Pending')
-            <button class="btn btn-success">Confirm Booking</button>
-        @endif
-        <a href="{{ route('admin.page1') }}" class="btn btn-secondary">Back to Bookings</a>
-    </div>
+        <!-- Payment Information (optional) -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Payment Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="amount" class="form-label"><strong>Total Amount</strong></label>
+                    <input type="number" name="amount" class="form-control" id="amount" value="{{ $details['amount'] ?? '' }}">
+                </div>
+                <div class="mb-3">
+                    <label for="payment_status" class="form-label"><strong>Payment Status</strong></label>
+                    <select name="payment_status" class="form-select" id="payment_status">
+                        <option value="Pending" {{ ($details['payment_status'] ?? '') == 'Pending' ? 'selected' : '' }}>Pending</option>
+                        <option value="Paid" {{ ($details['payment_status'] ?? '') == 'Paid' ? 'selected' : '' }}>Paid</option>
+                        <option value="Cancelled" {{ ($details['payment_status'] ?? '') == 'Cancelled' ? 'selected' : '' }}>Cancelled</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="mt-4">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a href="{{ route('admin.page1') }}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+    <!-- Form ends -->
 </div>
 @endsection
