@@ -53,38 +53,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>BK1254</td>
-                        <td>John Doe</td>
-                        <td>Paris, France</td>
-                        <td>2024-08-20</td>
-                        <td><span class="badge bg-success">Confirmed</span></td>
-                        <td>
-                            <button class="btn btn-sm btn-outline-danger">Cancel</button>
-                            <button class="btn btn-sm btn-outline-primary">View Details</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>BK1253</td>
-                        <td>Jane Smith</td>
-                        <td>New York, USA</td>
-                        <td>2024-08-18</td>
-                        <td><span class="badge bg-warning">Pending</span></td>
-                        <td>
-                            <button class="btn btn-sm btn-outline-success">Confirm</button>
-                            <button class="btn btn-sm btn-outline-primary">View Details</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>BK1252</td>
-                        <td>Mike Brown</td>
-                        <td>Tokyo, Japan</td>
-                        <td>2024-08-17</td>
-                        <td><span class="badge bg-danger">Cancelled</span></td>
-                        <td>
-                            <button class="btn btn-sm btn-outline-primary">View Details</button>
-                        </td>
-                    </tr>
+                @foreach ($booking as $index => $details)
+                <tr>
+                    <td>{{ $details['id'] }}</td>
+                    <td>{{ $details['name'] }}</td>
+                    <td>{{ $details['dest'] }}</td>
+                    <td>{{ $details['date'] }}</td>
+                    <td>
+                        @if($details['status'] === 'Pending')
+                            <span class="badge bg-warning">{{ $details['status'] }}</span>
+                        @elseif($details['status'] === 'Cancelled')
+                            <span class="badge bg-danger">{{ $details['status'] }}</span>
+                        @elseif($details['status'] === 'Confirmed')
+                            <span class="badge bg-success">{{ $details['status'] }}</span>
+                        @endif
+                    </td>
+                    <td>
+                    @if($details['status'] === 'Pending')
+                    <button class="btn btn-sm btn-outline-success">{{ $details['action'] }}</button>
+                    @endif
+                         <a href="/admin/page1/{{$index}}" class="btn btn-sm btn-outline-primary">View Details </a>
+                    </td>
+                </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
