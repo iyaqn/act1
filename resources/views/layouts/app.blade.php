@@ -6,18 +6,11 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
-
-        <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
-
-
-        <!-- Styles -->
         @livewireStyles
         <style>
             .hero {
@@ -51,8 +44,6 @@
         </style>
     </head>
     <body class="d-flex flex-column min-vh-100 font-sans antialiased">
-
-        <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="/page1">Tour Agency</a>
@@ -67,7 +58,6 @@
                         <li class="nav-item"><a class="nav-link" href="/page4">FAQs</a></li>
                         <li class="nav-item"><a class="nav-link" href="/page5">Gallery</a></li>
                         @auth
-                        <!-- Dropdown Menu for Authenticated Users -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ Auth::user()->name }}
@@ -90,13 +80,9 @@
                 </div>
             </div>
         </nav>
-
-        <!-- Main Content -->
         <div class="container-fluid flex-grow-1 p-0">
             @yield('content')
         </div>
-
-        <!-- Footer -->
         <footer class="mt-auto">
             <div class="container">
                 <p>&copy; 2024 Tour Agency. All rights reserved.</p>

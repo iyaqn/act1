@@ -1,15 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- Hero Section -->
 <div class="hero" style="background: url('https://www.vmcdn.ca/f/files/via/images/tourism/canada-travel-allure-vancouver-hiking.jpg;w=960') no-repeat center center; background-size: cover; height: 400px; display: flex; align-items: center; justify-content: center; color: white;">
     <div class="text-center">
         <h1>About Us</h1>
         <p>Home / About</p>
     </div>
 </div>
-
-<!-- Why Choose Us Section -->
 <div class="container my-5">
     <div class="row align-items-center">
         <div class="col-md-6">
@@ -51,11 +48,9 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="skills" role="tabpanel" aria-labelledby="skills-tab">
-                    <!-- Content for Skills Tab -->
                     <p>We have a highly skilled team with expertise in tour management, hospitality, and client satisfaction.</p>
                 </div>
                 <div class="tab-pane fade" id="mission" role="tabpanel" aria-labelledby="mission-tab">
-                    <!-- Content for Mission Tab -->
                     <p>Our mission is to provide memorable experiences with high-quality service that exceeds our clients’ expectations.</p>
                 </div>
             </div>

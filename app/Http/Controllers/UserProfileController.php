@@ -26,7 +26,6 @@ class UserProfileController extends Controller
         $user->email = $request->input('email');
         $user->phone = $request->input('phone');
         $user->address = $request->input('address');
-        $user->save();
 
         return redirect()->route('profile.show')->with('status', 'Profile updated successfully.');
     }

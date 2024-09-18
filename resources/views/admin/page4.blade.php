@@ -1,13 +1,9 @@
 @extends('layouts.admin')
 
 @section('admin-content')
-<!-- Hero Section -->
     <div style="margin-bottom: 10%;">
 <br/> <br/>
     </div>
-
-
-<!-- Profile Section -->
 <div class="justify-content-center align-items-center">
     <div class="col-md-8">
         <div class="card">

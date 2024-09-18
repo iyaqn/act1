@@ -3,8 +3,6 @@
 @section('admin-content')
 <div class="container mt-4">
     <h1 class="mb-4">Reports & Analytics</h1>
-
-    <!-- Revenue Chart -->
     <div class="card mb-4">
         <div class="card-header">
             <h5>Revenue Over Time</h5>
@@ -13,8 +11,6 @@
             <canvas id="revenueChart"></canvas>
         </div>
     </div>
-
-    <!-- Top Destinations -->
     <div class="card mb-4">
         <div class="card-header">
             <h5>Top Destinations</h5>
@@ -23,8 +19,6 @@
             <canvas id="topDestinationsChart"></canvas>
         </div>
     </div>
-
-    <!-- Booking Status Pie Chart -->
     <div class="card mb-4">
         <div class="card-header">
             <h5>Booking Status Distribution</h5>
@@ -35,11 +29,8 @@
     </div>
 
 </div>
-
-<!-- Chart.js Library -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    // Example data for Revenue Chart
     var ctx = document.getElementById('revenueChart').getContext('2d');
     var revenueChart = new Chart(ctx, {
         type: 'line',
@@ -61,8 +52,6 @@
             }
         }
     });
-
-    // Example data for Top Destinations Chart
     var ctx2 = document.getElementById('topDestinationsChart').getContext('2d');
     var topDestinationsChart = new Chart(ctx2, {
         type: 'bar',
@@ -96,8 +85,6 @@
             }
         }
     });
-
-    // Example data for Booking Status Chart
     var ctx3 = document.getElementById('bookingStatusChart').getContext('2d');
     var bookingStatusChart = new Chart(ctx3, {
         type: 'pie',

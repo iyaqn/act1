@@ -3,8 +3,6 @@
 @section('admin-content')
 <div class="container mt-4">
     <h1 class="mb-4">Booking Management</h1>
-
-    <!-- Add Booking Section -->
     <div class="card mb-4">
         <div class="card-header">
             <h5>Add New Booking</h5>
@@ -42,8 +40,6 @@
             </form>
         </div>
     </div>
-
-    <!-- Filter Options -->
     <div class="card mb-4">
         <div class="card-header">
             <h5>Filter Bookings</h5>
@@ -73,8 +69,6 @@
             </form>
         </div>
     </div>
-
-    <!-- Booking List -->
     <div class="card">
         <div class="card-header">
             <h5>All Bookings</h5>

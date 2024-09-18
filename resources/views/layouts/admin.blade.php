@@ -7,20 +7,13 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-    <!-- Bootstrap Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
-
-    <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="d-flex flex-column min-vh-100">
-
-<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="/admin ">
@@ -31,7 +24,6 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <!-- Right-side Profile Dropdown -->
             <ul class="navbar-nav ms-auto me-4">
                 @auth
                 <li class="nav-item dropdown">
@@ -56,7 +48,6 @@
 
 <div class="container-fluid flex-grow-1">
     <div class="row">
-        <!-- Collapsible Sidebar -->
         <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse show">
             <div class="position-sticky pt-3">
                 <ul class="nav flex-column">
@@ -93,38 +84,31 @@
                 </ul>
             </div>
         </nav>
-
-        <!-- Main Content -->
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
             @yield('admin-content')
         </main>
     </div>
 </div>
-
-<!-- Footer -->
 <footer class="footer bg-dark text-white text-center text-lg-start mt-auto py-3">
     <div class="container text-center">
-        &copy; {{ date('Y') }} Your Company. All rights reserved.
+        &copy; {{ date('Y') }} Tour Agency. All rights reserved.
     </div>
 </footer>
-
-<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
-    /* Set the height of the sidebar to span from the navbar to the footer */
     #sidebar {
         position: fixed;
-        top: 56px; /* Height of the navbar */
-        bottom: 56px; /* Height of the footer */
-        width: 70px; /* Sidebar collapsed width */
+        top: 56px; 
+        bottom: 56px;
+        width: 70px; 
         transition: width 0.3s;
         background-color: #f8f9fa;
         box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     }
 
     #sidebar:hover {
-        width: 200px; /* Sidebar expanded width */
+        width: 200px; 
     }
 
     #sidebar .nav-label {
@@ -155,17 +139,14 @@
         font-size: 1.25rem;
     }
 
-    /* Hide the text labels initially */
     #sidebar .nav-label {
         display: none;
     }
 
-    /* Show the text labels on hover */
     #sidebar:hover .nav-label {
         display: inline;
     }
 
-    /* Center the icons when the sidebar is collapsed */
     #sidebar .nav-link {
         justify-content: center;
     }
@@ -174,14 +155,13 @@
         justify-content: flex-start;
     }
 
-    /* Ensure the main content takes up the remaining space */
     main {
-        margin-left: 70px; /* Collapsed sidebar width */
+        margin-left: 70px; 
         transition: margin-left 0.3s;
     }
 
     #sidebar:hover + main {
-        margin-left: 200px; /* Expanded sidebar width */
+        margin-left: 200px; 
     }
 </style>
 </body>

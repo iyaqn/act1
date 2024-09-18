@@ -3,8 +3,6 @@
 @section('admin-content')
 <div class="container mt-4">
     <h1 class="mb-4">Admin Dashboard</h1>
-
-    <!-- Summary Cards -->
     <div class="row">
         <div class="col-md-3">
             <div class="card text-white bg-primary mb-3">
@@ -39,8 +37,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Recent Bookings Table -->
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -93,8 +89,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Additional Information -->
     <div class="row mt-4">
         <div class="col-md-6">
             <div class="card">

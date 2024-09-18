@@ -1,19 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- Hero Section -->
 <div class="hero" style="background: url('https://i.pinimg.com/1200x/e4/d1/42/e4d1426ccea467d48ba584d8242cf8e2.jpg') no-repeat center center; background-size: cover; height: 400px; display: flex; align-items: center; justify-content: center; color: white;">
     <div class="text-center">
         <h1>FAQs</h1>
         <p>Home / FAQs</p>
     </div>
 </div>
-
-<!-- FAQ Section -->
 <div class="container my-5">
     <h2 class="text-center mb-4">Frequently Asked Questions</h2>
-    
-    <!-- FAQ Accordion -->
     <div class="accordion" id="faqAccordion">
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
@@ -52,8 +47,6 @@
             </div>
         </div>
     </div>
-
-    <!-- FAQ Submission Form -->
     <div class="faq-form mt-5">
         <h3 class="text-center mb-3">Have a Question? Ask Us!</h3>
         <form action="" method="POST">
@@ -75,8 +68,6 @@
             </div>
         </form>
     </div>
-
-    <!-- Displaying static submitted questions -->
     <div class="submitted-questions mt-5">
         <h3 class="text-center mb-3">Already Asked Questions</h3>
         <div class="accordion" id="submittedFaqAccordion">
@@ -104,7 +95,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Add more static FAQs as needed -->
         </div>
     </div>
 </div>

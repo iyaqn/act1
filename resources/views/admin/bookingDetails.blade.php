@@ -3,13 +3,8 @@
 @section('admin-content')
 <div class="container mt-4">
     <h1 class="mb-4">Edit Booking Details</h1>
-
-    <!-- Form starts -->
     <form action="{{ route('booking.update', $details['id']) }}" method="POST">
         @csrf
-        @method('PUT')
-
-        <!-- Customer Information -->
         <div class="card mb-4">
             <div class="card-header">
                 <h5>Customer Information</h5>
@@ -25,8 +20,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Trip Information -->
         <div class="card mb-4">
             <div class="card-header">
                 <h5>Trip Information</h5>
@@ -51,7 +44,6 @@
             </div>
         </div>
 
-        <!-- Payment Information (optional) -->
         <div class="card mb-4">
             <div class="card-header">
                 <h5>Payment Information</h5>
@@ -72,12 +64,10 @@
             </div>
         </div>
 
-        <!-- Action Buttons -->
         <div class="mt-4">
             <button type="submit" class="btn btn-primary">Save Changes</button>
             <a href="{{ route('admin.page1') }}" class="btn btn-secondary">Cancel</a>
         </div>
     </form>
-    <!-- Form ends -->
 </div>
 @endsection

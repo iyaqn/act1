@@ -3,8 +3,6 @@
 @section('admin-content')
 <div class="container mt-4">
     <h1 class="mb-4">User Management</h1>
-
-    <!-- User List -->
     <div class="card">
         <div class="card-header">
             <h5>All Users</h5>

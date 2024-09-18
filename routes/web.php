@@ -5,14 +5,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuestPageController;
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\UserProfileController;
-use App\Http\Controllers\Auth\BookingController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\Auth\LoginController;
 //guests
 Route::get('/', [GuestPageController::class, 'page1'])->name('page1');
 Route::get('/page2', [GuestPageController::class, 'page2'])->name('page2');
 Route::get('/page3', [GuestPageController::class, 'page3'])->name('page3');
 Route::get('/page4', [GuestPageController::class, 'page4'])->name('page4');
-Route::get('/page5', [GuestPageController::class, 'page5'])->name('page5');
+Route::get('/page5', [Act2::class, 'showGallery'])->name('page5');
+Route::get('/page5/{index}', [Act2::class, 'showGalleryImg']);
+
+
 
 
 

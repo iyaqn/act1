@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- Information Section -->
 <div class="container my-5">
     <div class="row text-center">
         <div class="col-md-4 mb-4">
@@ -24,8 +23,6 @@
         </div>
     </div>
 </div>
-
-<!-- Contact Form Section -->
 <div class="container my-5">
     <h2 class="text-center mb-4">Get in touch</h2>
     <p class="text-center">If you have any questions, just fill in the contact form, and we will answer you shortly.</p>
