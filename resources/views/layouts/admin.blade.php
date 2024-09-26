@@ -16,7 +16,7 @@
 <body class="d-flex flex-column min-vh-100">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/admin ">
+        <a class="navbar-brand" href="/dashboard ">
 
             <i class="bi bi-airplane-engines-fill" style="width: 40px;"></i>
         </a>
@@ -52,7 +52,7 @@
             <div class="position-sticky pt-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{{ route('admin.dashboard') }}">
+                        <a class="nav-link" aria-current="page" href="{{ route('dashboard') }}">
                             <i class="bi bi-house-door"></i>
                             <span class="nav-label">Dashboard</span>
                         </a>
@@ -101,7 +101,7 @@
         position: fixed;
         top: 56px; 
         bottom: 56px;
-        width: 70px; 
+        width: 70px;
         transition: width 0.3s;
         background-color: #f8f9fa;
         box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);

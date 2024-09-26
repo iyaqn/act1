@@ -22,7 +22,6 @@ Route::get('/page5/{index}', [Act2::class, 'showGalleryImg']);
 
 //admin
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin', [AdminPageController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/admin/page1', [Act2::class, 'show'])->name('admin.page1');
     Route::get('/admin/page1/{index}', [Act2::class, 'showDetails']);
     Route::put('/admin/page1/{id}/update', [BookingController::class, 'update'])->name('booking.update');
@@ -30,7 +29,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/page3', [AdminPageController::class, 'page3'])->name('admin.page3');
     Route::get('/admin/page4', [AdminPageController::class, 'page4'])->name('admin.page4');
     Route::get('/admin/page4', [AdminPageController::class, 'page4'])->name('admin.page4');
-
+    Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
 
     //profile
     Route::get('/profile', [UserProfileController::class, 'show'])->name('profile.show');
@@ -38,10 +37,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+
 
 

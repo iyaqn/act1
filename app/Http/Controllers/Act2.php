@@ -9,8 +9,8 @@ class Act2 extends Controller
     public $bookingDeets = [
             [
             'id' => 'BK1253',
-            'name' => 'Ariana Grande',
-            'email' => 'arianagrande@gmail.com',
+            'name' => 'Maya Hawke',
+            'email' => 'chaosangel@gmail.com',
             'phone' => '029387483',
             'amount' => '$1300.00',
             'dest' => 'New York, USA',

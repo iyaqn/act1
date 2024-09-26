@@ -51,7 +51,7 @@
             <div class="card-body">
                 <div class="mb-3">
                     <label for="amount" class="form-label"><strong>Total Amount</strong></label>
-                    <input type="number" name="amount" class="form-control" id="amount" value="{{ $details['amount'] ?? '' }}">
+                    <input type="text" name="amount" class="form-control" id="amount" value="{{ $details['amount'] ?? '' }}">
                 </div>
                 <div class="mb-3">
                     <label for="payment_status" class="form-label"><strong>Payment Status</strong></label>
