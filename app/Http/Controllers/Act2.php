@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use Illuminate\Http\Request;
 
 class Act2 extends Controller
@@ -50,11 +51,12 @@ class Act2 extends Controller
         ];
 
     public function show(){
-        return view('admin.page1', ['booking' => $this->bookingDeets]);
+        $bookingDeets = Booking::paginate(15);
+        return view('admin.page1', ['booking' => $bookingDeets]);
     }
 
     public function showDetails($index) {
-        return view('admin.bookingDetails', ['details' => $this->bookingDeets[$index]]);
+        return view('admin.bookingDetails', ['details' => Booking::find($index)]);
     }
 
     public $galleryImg = [

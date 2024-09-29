@@ -8,10 +8,23 @@
             <h5>Add New Booking</h5>
         </div>
         <div class="card-body">
-            <form action="" method="POST">
+            <form action="{{ route('booking.create') }}" method="POST">
                 @csrf
-
+                @method('POST')
                 <div class="row g-3">
+                    @if ($errors->any())
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            @foreach ($errors->all() as $error)
+                                {{$error}}
+                            @endforeach
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @elseif (session('status'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('status') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
                     <div class="col-md-4">
                         <label for="name" class="form-label">Customer Name</label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="Enter customer name" required>
@@ -86,11 +99,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach ($booking as $index => $details)
+                @foreach ($booking as $details)
                 <tr>
                     <td>{{ $details['id'] }}</td>
-                    <td>{{ $details['name'] }}</td>
-                    <td>{{ $details['dest'] }}</td>
+                    <td>{{ $details->customer->name }}</td>
+                    <td>{{ $details['destination'] }}</td>
                     <td>{{ $details['date'] }}</td>
                     <td>
                         @if($details['status'] === 'Pending')
@@ -102,15 +115,13 @@
                         @endif
                     </td>
                     <td>
-                    @if($details['status'] === 'Pending')
-                    <button class="btn btn-sm btn-outline-success">{{ $details['action'] }}</button>
-                    @endif
-                         <a href="/admin/page1/{{$index}}" class="btn btn-sm btn-outline-primary">View Details</a>
+                        <a href="/admin/page1/{{ $details['id'] }}" class="btn btn-sm btn-outline-primary">View Details</a>
                     </td>
                 </tr>
                 @endforeach
                 </tbody>
             </table>
+            {{ $booking->links() }}
         </div>
     </div>
 

@@ -12,7 +12,7 @@
             <div class="card-body">
                 <div class="mb-3">
                     <label for="name" class="form-label"><strong>Name</strong></label>
-                    <input type="text" name="name" class="form-control" id="name" value="{{ $details['name'] }}" required>
+                    <input type="text" name="name" class="form-control" id="name" value="{{ $details->customer->name }}" required>
                 </div>
                 <div class="mb-3">
                     <label for="id" class="form-label"><strong>Booking ID</strong></label>
@@ -27,7 +27,7 @@
             <div class="card-body">
                 <div class="mb-3">
                     <label for="dest" class="form-label"><strong>Destination</strong></label>
-                    <input type="text" name="dest" class="form-control" id="dest" value="{{ $details['dest'] }}" required>
+                    <input type="text" name="dest" class="form-control" id="dest" value="{{ $details['destination'] }}" required>
                 </div>
                 <div class="mb-3">
                     <label for="date" class="form-label"><strong>Booking Date</strong></label>
