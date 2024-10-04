@@ -51,7 +51,7 @@ class Act2 extends Controller
         ];
 
     public function show(){
-        $bookingDeets = Booking::paginate(15);
+        $bookingDeets = Booking::paginate(5);
         return view('admin.page1', ['booking' => $bookingDeets]);
     }
 
