@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('destination');
             $table->string('date');
             $table->string('status');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
