@@ -160,7 +160,7 @@
                 <thead>
                     <tr>
                         <th>Booking ID</th>
-                        <th>Customer ID</th>
+                        <th>Customer Image</th>
                         <th>Customer Name</th>
                         <th>Destination</th>
                         <th>Booking Date</th>

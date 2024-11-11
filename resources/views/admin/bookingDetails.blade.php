@@ -5,6 +5,21 @@
     <h1 class="mb-4">Edit Booking Details</h1>
     <form action="{{ route('booking.update', $details['id']) }}" method="POST">
         @csrf
+        @method('put')
+        
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{$error}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endforeach
+        @elseif (session('status'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{session('status')}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <div class="card mb-4">
             <div class="card-header">
                 <h5>Customer Information</h5>
@@ -12,7 +27,7 @@
             <div class="card-body">
                 <div class="mb-3">
                     <label for="name" class="form-label"><strong>Name</strong></label>
-                    <input type="text" name="name" class="form-control" id="name" value="{{ $details->customer->name }}" required>
+                    <input type="text" name="name" class="form-control" id="name" value="{{ $details->customer->name }}" readonly>
                 </div>
                 <div class="mb-3">
                     <label for="id" class="form-label"><strong>Booking ID</strong></label>
@@ -44,7 +59,7 @@
             </div>
         </div>
 
-        <div class="card mb-4">
+        <!-- <div class="card mb-4">
             <div class="card-header">
                 <h5>Payment Information</h5>
             </div>
@@ -62,7 +77,7 @@
                     </select>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="mt-4">
             <button type="submit" class="btn btn-primary">Save Changes</button>

@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
-    public function create(Request $request)
-    {
+    public function create(Request $request) {
         $validatedData = $request->validate([
             'customer_id' => ['required', 'integer'],
             'dest' => ['required', 'string'],
@@ -24,6 +23,26 @@ class BookingController extends Controller
         ]);
 
         return redirect()->route('admin.page1')->with('booking-success', 'Booking successfully created');
+    }
+
+    public function update(Request $request, $id) {
+        $validatedData = $request->validate([
+            'date' => ['required', 'date'],
+            'dest' => ['required', 'string'],
+            'status' => ['required']
+        ]);
+
+        $booking = Booking::find($id);
+
+        $booking->update([
+            'date' => $validatedData['date'],
+            'destination' => $validatedData['dest'],
+            'status' => $validatedData['status'],
+        ]);
+
+        $booking->save();
+
+        return redirect()->back()->with('status', 'Booking is successfully updated');
     }
 
     public function delete($id) {

@@ -51,7 +51,7 @@ class Act2 extends Controller
         ];
 
     public function show(){
-        $bookingDeets = Booking::withTrashed()->paginate(15);
+        $bookingDeets = Booking::withTrashed()->paginate(5);
         $customers = Customer::all();
         return view('admin.page1', ['booking' => $bookingDeets, 'customers' => $customers]);
     }
