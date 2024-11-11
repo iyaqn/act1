@@ -5,29 +5,92 @@
     <h1 class="mb-4">Booking Management</h1>
     <div class="card mb-4">
         <div class="card-header">
-            <h5>Add New Booking</h5>
+            <h5>Add New Customer</h5>
         </div>
         <div class="card-body">
-            <form action="{{ route('booking.create') }}" method="POST">
+            <form action="{{ route('customer.create') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
                 <div class="row g-3">
-                    @if ($errors->any())
+
+                    @error('name')
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            @foreach ($errors->all() as $error)
-                                {{$error}}
-                            @endforeach
+                            {{$message}}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
-                    @elseif (session('status'))
+                    @enderror
+                    @error('id')
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{$message}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @enderror
+
+                    @if (session('customer-success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ session('status') }}
+                            {{ session('customer-success') }}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
+
                     <div class="col-md-4">
                         <label for="name" class="form-label">Customer Name</label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="Enter customer name" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="id-img" class="form-label">Customer ID Picture</label>
+                        <input type="file" class="form-control" id="id-img" name="id" required>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <button type="submit" class="btn btn-success">Add Customer</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Add New Booking</h5>
+        </div>
+        <div class="card-body">
+            <form action="{{ route('booking.create') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('POST')
+                <div class="row g-3">
+
+                    @error('dest')
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{$message}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @enderror
+                    @error('date')
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{$message}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @enderror
+                    @error('status')
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{$message}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @enderror
+
+                    @if (session('booking-success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('booking-success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+
+                    <div class="col-md-4">
+                        <label for="customer" class="form-label">Customer</label>
+                        <select name="customer_id" id="customer" class="form-control">
+                            @foreach ($customers as $customer)
+                                <option value="{{__($customer->id)}}">{{__($customer->name)}}</option>       
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-md-4">
                         <label for="dest" class="form-label">Destination</label>
@@ -87,10 +150,17 @@
             <h5>All Bookings</h5>
         </div>
         <div class="card-body">
+            @if (session('status'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('status') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>Booking ID</th>
+                        <th>Customer ID</th>
                         <th>Customer Name</th>
                         <th>Destination</th>
                         <th>Booking Date</th>
@@ -102,11 +172,14 @@
                 @foreach ($booking as $details)
                 <tr>
                     <td>{{ $details['id'] }}</td>
+                    <td><img src="{{asset($details->customer->idUrl)}}" alt=""></td>
                     <td>{{ $details->customer->name }}</td>
                     <td>{{ $details['destination'] }}</td>
                     <td>{{ $details['date'] }}</td>
                     <td>
-                        @if($details['status'] === 'Pending')
+                        @if($details['deleted_at'] !== null)
+                            <span class="badge bg-danger">Deleted</span>
+                        @elseif($details['status'] === 'Pending')
                             <span class="badge bg-warning">{{ $details['status'] }}</span>
                         @elseif($details['status'] === 'Cancelled')
                             <span class="badge bg-danger">{{ $details['status'] }}</span>
@@ -115,7 +188,25 @@
                         @endif
                     </td>
                     <td>
-                        <a href="/admin/page1/{{ $details['id'] }}" class="btn btn-sm btn-outline-primary">View Details</a>
+                        @if ($details['deleted_at'] !== null)
+                            <form action="{{ route('booking.restore', ['id' => $details['id']])}}" method="POST">
+                                @csrf
+                                @method('patch')
+                                <button type="submit" class="btn btn-sm btn-outline-success">Restore</button>
+                            </form>
+                            <form action="{{ route('booking.permaDelete', ['id' => $details['id']])}}" method="POST" >
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Permanently Delete</button>
+                            </form>
+                        @else
+                            <a href="/admin/page1/{{ $details['id'] }}" class="btn btn-sm btn-outline-primary">View Details</a>
+                            <form action="{{ route('booking.delete', ['id' => $details['id']])}}" method="POST" >
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                            </form>
+                        @endif
                     </td>
                 </tr>
                 @endforeach

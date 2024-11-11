@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
-use Illuminate\Http\Request;
+use App\Models\Customer;
 
 class Act2 extends Controller
 {
@@ -51,8 +51,9 @@ class Act2 extends Controller
         ];
 
     public function show(){
-        $bookingDeets = Booking::paginate(5);
-        return view('admin.page1', ['booking' => $bookingDeets]);
+        $bookingDeets = Booking::withTrashed()->paginate(15);
+        $customers = Customer::all();
+        return view('admin.page1', ['booking' => $bookingDeets, 'customers' => $customers]);
     }
 
     public function showDetails($index) {
