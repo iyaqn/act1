@@ -17,13 +17,12 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="/dashboard ">
-
             <i class="bi bi-airplane-engines-fill" style="width: 40px;"></i>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+    
             <ul class="navbar-nav ms-auto me-4">
                 @auth
                 <li class="nav-item dropdown">
@@ -48,7 +47,7 @@
 
 <div class="container-fluid flex-grow-1">
     <div class="row">
-        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse show">
+        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
             <div class="position-sticky pt-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
@@ -59,41 +58,44 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.page1') }}">
-                        <i class="bi bi-ui-checks"></i>
+                            <i class="bi bi-ui-checks"></i>
                             <span class="nav-label">Bookings</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.page2') }}">
-                        <i class="bi bi-file-earmark-bar-graph-fill"></i>
+                            <i class="bi bi-file-earmark-bar-graph-fill"></i>
                             <span class="nav-label">Reports</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.page3') }}">
-                        <i class="bi bi-people"></i>
+                            <i class="bi bi-people"></i>
                             <span class="nav-label">Users</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.page4') }}">
-                        <i class="bi bi-person"></i>
+                            <i class="bi bi-person"></i>
                             <span class="nav-label">Profile</span>
                         </a>
                     </li>
                 </ul>
             </div>
         </nav>
+
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
             @yield('admin-content')
         </main>
     </div>
 </div>
+
 <footer class="footer bg-dark text-white text-center text-lg-start mt-auto py-3">
     <div class="container text-center">
         &copy; {{ date('Y') }} Tour Agency. All rights reserved.
     </div>
 </footer>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
@@ -164,5 +166,6 @@
         margin-left: 200px; 
     }
 </style>
+
 </body>
 </html>

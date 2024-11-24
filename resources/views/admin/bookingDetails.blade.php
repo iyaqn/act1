@@ -81,7 +81,7 @@
 
         <div class="mt-4">
             <button type="submit" class="btn btn-primary">Save Changes</button>
-            <a href="{{ route('admin.page1') }}" class="btn btn-secondary">Cancel</a>
+            <a href="{{ route('admin.page1') }}" class="btn btn-secondary">Back</a>
         </div>
     </form>
 </div>
